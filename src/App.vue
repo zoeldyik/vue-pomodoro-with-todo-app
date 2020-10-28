@@ -1,28 +1,56 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-btn class="toggleSidebar" size="sm" v-b-toggle.sidebar>
+      <span class="material-icons">
+        menu
+      </span>
+    </b-btn>
+    <pomodoro-component></pomodoro-component>
+
+    <!-- sidebar -->
+    <b-sidebar id="sidebar" lazy width="100%">
+      <div class="pt-5">
+        <todo-component></todo-component>
+      </div>
+    </b-sidebar>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Todo from "./components/todo";
+import Pomodoro from "./components/pomodoro";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    "todo-component": Todo,
+    "pomodoro-component": Pomodoro,
+  },
+};
 </script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: whitesmoke;
+  color: #343a40;
+}
+
+#app .toggleSidebar {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 2px 4px;
+  background-color: whitesmoke;
+  border: whitesmoke;
+  color: #343a40;
+}
+
+#sidebar {
+  background-color: whitesmoke !important;
 }
 </style>
